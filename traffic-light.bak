@@ -1,0 +1,39 @@
+#lang racket
+
+(require 2htdp/universe)
+(require 2htdp/image)
+(require 2htdp/batch-io)
+(require test-engine/racket-tests)
+
+;;Your job is to finish the steps 5 and 6 while designing
+;;The render-light
+(define traffic-light-size 50)
+
+;;A TrafficLight is an enumeration of the following Strings:
+;;"red", "yellow", and "green"
+;;Interpretation, the following strings represent the different lights a
+;;traffic light can light up
+
+;;A WorldState is a TrafficLight
+
+;;WorldState -> Image
+;;Draws a traffic light of a color derived from the current world state
+;;Given: "red" Expect: (circle  traffic-light-size "solid" "red")
+;;Given: "green" Expect: (circle  traffic-light-size "solid" "green")
+;;Given: "yellow" Expect: (circle  traffic-light-size "solid" "yellow")
+(define (render-light s) (empty-scene 100 100)) ;replace the body with relevant code
+
+;; TrafficLight -> TrafficLight
+;; yields the next state given current state s
+;;Given: "red" Expect: "green"
+;;Given: "green" Expect: "yellow"
+;;Given: "yellow" Expect: "red"
+(define (traffic-light-next s) s) ;replace with s 
+
+;;Here is the main big-bang function
+;;The event handlers are already registered
+;;Just finish the definition for render-light and traffic-light-next
+(define (main-light color)
+  (big-bang color
+	    [on-tick traffic-light-next]
+	    [to-draw render-light]))
